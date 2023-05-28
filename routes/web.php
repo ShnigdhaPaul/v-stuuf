@@ -25,8 +25,10 @@ Route::get('/dashboard', [DashboardController::class , 'index'])->name('dashboar
 //authentication
 
 Route::get('/login', [LoginController::class , 'index'])->name('login');
-Route::post('/login', [LoginController::class , 'index'])->name('login');
+Route::post('/login', [LoginController::class , 'login']);
 
 Route::get('/register', [RegisterController::class , 'index'])->name('register');
-Route::post('/register', [RegisterController::class , 'index'])->name('register');
+Route::post('/register', [RegisterController::class , 'register']);
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
