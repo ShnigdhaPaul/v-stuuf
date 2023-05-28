@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'password' => ['required', 'confirmed', 'min:6'],
         ]);
 
-      // try {
+       //try {
            $user = User::create([
                  'name' => $request->name,
                  'email' => $request->email,
@@ -39,12 +39,15 @@ class RegisterController extends Controller
            ]);
 
 
-           Auth::attempt($request->only('email','password'));
+           if(Auth::attempt($request->only(['email', 'password']))) {
+            event(new Registered($user));
+          return redirect()->route('verification.notice');
+           } else {
+            return redirect()->back()->with('msg', 'User not registered');
+           }
 
-           return redirect()->route('login')->with('msg', 'Registration Successfull.Please Login');
-        // }catch(\Exception $e){
-   
-         //  return redirect()->back()->with('msg', 'User not register. Please try again');
-        // }
-      }
-   }
+     // }catch(\Exception $e) {
+            //return redirect()->back()->with('msg', 'User not registered');
+       //}
+    }
+}

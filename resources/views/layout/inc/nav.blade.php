@@ -5,11 +5,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+
       <ul class="navbar-nav">
         <li class="nav-item active">
+         
+            @auth
+              
+          
+          
           <a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a>
         </li>
         <li class="nav-item">
+          @endauth
+          @guest
             <a class="nav-link" href="{{route('home')}}">Home</a>
           </li>
         <li class="nav-item">
@@ -18,12 +26,21 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('register')}}">Sign-Up</a>
         </li>
+        @endguest
+        @auth
+          
+  
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}">LogOut</a>
           </li>
+          @endauth
+         
+             
+       
         <li class="nav-item">
           <a class="nav-link " href="{{route('about')}}">About Us</a>
         </li>
+      
       </ul>
     </div>
     
