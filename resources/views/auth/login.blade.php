@@ -40,6 +40,9 @@
                       <label class="form-label" for="form3Example1m">Password</label>
                     </div>
                 </div>
+                <div class="p-3 m3">
+                  <a href="{{ route('password.request') }}">Forget Your Password ??</a>
+              </div>
                     <div class="d-flex justify-content-end pt-3">
                       <input type="submit" class="btn btn-warning btn-lg ms-2" value="Login">
                     </div>

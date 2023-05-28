@@ -12,6 +12,11 @@ class LoginController extends Controller
 {
 
 
+  
+    function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
    
 
     function index() {
