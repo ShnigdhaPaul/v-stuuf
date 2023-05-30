@@ -6,6 +6,9 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\RentProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,3 +70,12 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 've
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])
 ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+//=====Product==//
+
+Route::resource('/products' , ProductsController::class);
+
+//==RENT==//
+
+Route::resource('/rent', RentProductController::class);

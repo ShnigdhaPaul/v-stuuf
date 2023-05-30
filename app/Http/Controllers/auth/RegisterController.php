@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'password' => ['required', 'confirmed', 'min:6'],
         ]);
 
-       //try {
+       try {
            $user = User::create([
                  'name' => $request->name,
                  'email' => $request->email,
@@ -46,8 +46,8 @@ class RegisterController extends Controller
             return redirect()->back()->with('msg', 'User not registered');
            }
 
-     // }catch(\Exception $e) {
-            //return redirect()->back()->with('msg', 'User not registered');
-       //}
+     }catch(\Exception $e) {
+            return redirect()->back()->with('msg', 'User not registered');
+       }
     }
 }

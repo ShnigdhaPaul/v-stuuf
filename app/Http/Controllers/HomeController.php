@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\rentProduct;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
    public function index()
    {
-    return view ('home');
+      $products = rentProduct::paginate(10);
+    return view ('home',compact('products'));
    }
    public function about()
    {

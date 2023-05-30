@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title') @endsection
+@section('title') About Us @endsection
 
 @section('contents')
     
