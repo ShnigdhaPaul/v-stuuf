@@ -7,10 +7,10 @@
     <div class="col-sm-6">
       <div class="card p-4 bg-primary text-white">
         <div class="card-body">
-          <h5 class="card-title">User Managment</h5>
-          <p class="card-text">Click here to see the information about users</p>
+          <h5 class="card-title">Add User</h5>
+          <p class="card-text">Click here to Add an User</p>
           <div class="card-body"><i class="bx bxs-user bx-lg"></i></div>
-          <a href="#" class="btn btn-dark">Click Here</a>
+          <a href="{{route('user.create')}}" class="btn btn-dark">Click Here</a>
         </div>
       </div>
     </div>
@@ -38,10 +38,10 @@
     <div class="col-sm-6">
         <div class="card p-4 bg-primary text-white">
           <div class="card-body">
-            <h5 class="card-title">Users Feedback</h5>
-            <p class="card-text">Click here to see the information about the expperience of users.</p>
+            <h5 class="card-title">Users Management</h5>
+            <p class="card-text">Click here to see the information about users.</p>
             <div class="card-body"><i class="bx bxs-user bx-lg"></i></div>
-            <a href="#" class="btn btn-dark">Click Here</a>
+            <a href="{{route('user.index')}}" class="btn btn-dark">Click Here</a>
           </div>
         </div>
       </div>

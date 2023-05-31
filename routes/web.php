@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RentProductController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +31,10 @@ Route::get('/dashboard', [DashboardController::class , 'index'])->name('dashboar
 //authentication
 
 Route::get('/login', [LoginController::class , 'index'])->name('login');
-Route::post('/login', [LoginController::class , 'login'])->name('login');
+Route::post('/login', [LoginController::class , 'login']);
 
 Route::get('/register', [RegisterController::class , 'index'])->name('register');
-Route::post('/register', [RegisterController::class , 'register'])->name('register');
+Route::post('/register', [RegisterController::class , 'register']);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -72,10 +73,13 @@ Route::post('/email/verification-notification', [EmailVerificationController::cl
 ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
-//=====Product==//
 
-Route::resource('/products' , ProductsController::class);
 
-//==RENT==//
+//==RENT Products==//
 
 Route::resource('/rent', RentProductController::class);
+
+
+//======User====//
+
+Route::resource('/user', UsersController::class);
