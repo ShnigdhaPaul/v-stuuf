@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RentProductController extends Controller
-{
+{ function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
-    { 
-        $products = rentProduct::paginate(10);
+    {  
+        $user= Auth::user();
+        $products = rentProduct::all();
        
         return view('rent.index', compact('products'));
     }
@@ -84,8 +88,9 @@ class RentProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
+        $this->authorize('edit', rentProduct::find($id));
         $product = rentProduct::find($id);
         return view('rent.edit', compact('product'));
     }
@@ -95,6 +100,7 @@ class RentProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('update', rentProduct::find($id));
         $product = rentProduct::find($id);
 
         $request->validate([
@@ -156,21 +162,20 @@ class RentProductController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete', rentProduct::find($id));
         $product = rentProduct::find($id);
-        $owner= $product->user->id;
-        $authuser=Auth::id();
-        if($owner==$authuser){
+       
+        
 
                if(is_file(public_path().'/storage/products/'.$product->image)) {
                    unlink(public_path().'/storage/products/'.$product->image);
                   $product->delete();
-                  return  redirect()->back()->with('msg', 'Deleted successfully');
+                  return  redirect()->route('dashboard.index')->with('msg', 'Deleted successfully');
                } else {
                 $product->delete();
-                return  redirect()->back()->with('msg', 'Deleted successfully');
+                return  redirect()->route('dashboard.index')->with('msg', 'Deleted successfully');
                }
-            }else{return  redirect()->back()->with('msg', 'you do not have the perrmission');
             }
 
     }
-    }
+
